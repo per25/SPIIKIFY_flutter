@@ -1,0 +1,26 @@
+{
+    "welcome": {
+        "title": "Välkommen",
+        "text": "Vi vill hälsa dig välkommen till SPIIKs egna app! Här går det att hitta information om vilka SPIIK är, vilka de som sitter i styrelsen är, vad vi jobbar med samt annan information som kan vara bra att veta för både blivande och nuvarande studenter."
+    },
+    "whoWeAre": {
+        "title": "Vilka är vi?",
+        "text": "Föreningens namn är Studentföreningen Prima Ingenjörer I Kalmar (SPIIK), och har sitt säte i Kalmar. Vi är en utbildningsförening under Linnéuniversitetets studentkår, Linnékåren. SPIIKs viktigaste uppgift är att främja sammanhållningen bland oss studenter som läser mjukvaruteknik, webbprogrammering och interaktionsdesign på Linnéuniversitetet i Kalmar, men också att ständigt arbeta för våra medlemmars intressen på Universitet och på arbetsmarknaden."
+    },
+    "board": {
+        "title": "Styrelsen",
+        "text": "Styrelsen består av 9 teknikstudenter. Tillsammans arbetar vi i styrelsen med att främja sammanhållningen hos studenterna, tillvaratar medlemmarnas gemensamma angelägenheter och företräda dem i studierelaterade frågor, utveckla kontakter med näringslivet samt anordna olika event som främjar medlemmarnas intressen. Varje år väljs en ny styrelse där det är ni medlemmar som under vårt valmöte bestämmer vilka som ska sitta i styrelsen. Kontakta oss: styrelsen@spiik.com",
+        "linkText": "nuvarande styrelse",
+        "linkUrl": "https://spiik.com/styrelsen"
+    },
+    "introduction": {
+        "title": "Introduktion",
+        "text": "Nollningen aka introduktionen för nya studenter börjar en vecka innan terminsstart och pågår under två veckor. Varje dag kommer det finnas möjlighet för dig att delta på olika event som anordnas av SPIIK och Linnékåren där du får lära känna nya människor, träffa dina kommande klasskamrater, lära känna Kalmar och känna på studentlivet. Introduktionen är ett sätt att ge dig en bra start inför dina kommande år på Linnéuniversitetet, oavsett om du är campus student eller distansstudent."
+    },
+    "membership": {
+        "title": "Medlemskap",
+        "text": "Vad innebär det att vara medlem? Först och främst innebär det att du som medlem har närvaro-, yttrande-, yrkande-, samt rösträtt vid stormöte. Det ger dig möjlighet att aktivt påverka föreningens arbete. Som medlem är du alltid välkommen att engagera dig i föreningens arbete. Det kan till exempel vara att sitta i ett utskott, hjälpa till med projekt eller agera fadder under introduktionsveckorna. Det finns alltid behov av engagerade människor och alla insatser, stora som små är alltid varmt välkomna. Tillbaks får du erfarenhet och kul umgänge! Det finns tre olika typer av medlemskap:\n\nCampusstudenter\n1 år för 100kr\n2 år för 150kr\n3 år för 200kr\nDistansstudenter - 50kr\nStödmedlemskap - från 100kr\nDu blir enkelt medlem genom att …\n\nSkicka en swish till 123 27 179 57 Studentföreningen Prima Ingenjörer och skriva ”Medlemskap” som meddelande.",
+        "linkText": "\nFylla i detta formulär:\n",
+        "linkUrl": "https://forms.gle/Xd2AabGNKZ7XLnyK6"
+    }
+}
