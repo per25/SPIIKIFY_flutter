@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:spiikify/game_state.dart';
 
 class AddPlayerScreen extends StatefulWidget {
   const AddPlayerScreen({Key? key}) : super(key: key);
@@ -9,22 +11,17 @@ class AddPlayerScreen extends StatefulWidget {
 
 class _AddPlayerScreenState extends State<AddPlayerScreen> {
   final TextEditingController _playerNameController = TextEditingController();
-  final List<String> _registeredPlayers = [];
 
   void _handleAddPlayer() {
     String playerName = _playerNameController.text.trim();
     if (playerName.isNotEmpty) {
-      setState(() {
-        _registeredPlayers.add(playerName);
-        _playerNameController.clear();
-      });
+      Provider.of<GameState>(context, listen: false).addPlayer(playerName);
+      _playerNameController.clear();
     }
   }
 
-  void _handleRemovePlayer(int index) {
-    setState(() {
-      _registeredPlayers.removeAt(index);
-    });
+  void _handleRemovePlayer(String playerName) {
+    Provider.of<GameState>(context, listen: false).removePlayer(playerName);
   }
 
   @override
@@ -33,9 +30,12 @@ class _AddPlayerScreenState extends State<AddPlayerScreen> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            colors: [Color.fromARGB(255, 0, 32, 78), Color.fromARGB(255, 49, 57, 126)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color.fromARGB(255, 0, 32, 78),
+              Color.fromARGB(255, 49, 57, 126)
+            ],
           ),
         ),
         child: SafeArea(
@@ -108,49 +108,53 @@ class _AddPlayerScreenState extends State<AddPlayerScreen> {
                       ),
                       const SizedBox(height: 10),
                       Expanded(
-                        child: ListView.builder(
-                          itemCount: _registeredPlayers.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              margin: const EdgeInsets.only(top: 10),
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                color: Colors.yellow,
-                                border: Border.all(
-                                  color: Colors.black,
-                                  width: 3,
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/images/profile_icon.png',
-                                    width: 30,
-                                  ),
-                                  const SizedBox(width: 10),
-                                  Text(
-                                    _registeredPlayers[index],
-                                    style: const TextStyle(
+                        child: Consumer<GameState>(
+                          builder: (context, gameState, child) {
+                            return ListView.builder(
+                              itemCount: gameState.players.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  margin: const EdgeInsets.only(top: 10),
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    color: Colors.yellow,
+                                    border: Border.all(
                                       color: Colors.black,
-                                      fontSize: 20,
+                                      width: 3,
                                     ),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                  const Spacer(),
-                                  GestureDetector(
-                                    onTap: () {
-                                      _handleRemovePlayer(index);
-                                    },
-                                    child: const Text(
-                                      'X',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 20,
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/images/profile_icon.png',
+                                        width: 30,
                                       ),
-                                    ),
+                                      const SizedBox(width: 10),
+                                      Text(
+                                        gameState.players[index],
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      GestureDetector(
+                                        onTap: () {
+                                          _handleRemovePlayer(gameState.players[index]);
+                                        },
+                                        child: const Text(
+                                          'X',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                );
+                              },
                             );
                           },
                         ),
@@ -165,7 +169,8 @@ class _AddPlayerScreenState extends State<AddPlayerScreen> {
                           padding: const EdgeInsets.all(10),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40),
-                            side: const BorderSide(width: 3, color: Colors.black),
+                            side:
+                                const BorderSide(width: 3, color: Colors.black),
                           ),
                         ),
                         child: const Text(

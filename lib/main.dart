@@ -7,9 +7,16 @@ import 'package:spiikify/select_decks.dart';
 import 'package:spiikify/select_player_screen.dart';
 import 'package:spiikify/social_media_buttons.dart';
 import 'package:spiikify/info_page.dart';
+import 'package:provider/provider.dart';
+import 'package:spiikify/game_state.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => GameState(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -31,7 +38,7 @@ class MyApp extends StatelessWidget {
         'EventScreen': (context) => const EventScreen(),
         'AddPlayerScreen': (context) => const AddPlayerScreen(),
         'SelectDeckScreen': (context) => const SelectDeckScreen(),
-        'CardSwiperScreen':(context) => const CardSwiperScreen(),
+        'CardSwiperScreen': (context) => const CardSwiperScreen(),
       },
       home: const MyHomePage(title: 'Home Page'),
     );

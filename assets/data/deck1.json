@@ -1,0 +1,50 @@
+{
+    "decks": [
+      {
+        "name": "Jag har aldrig",
+        "color": "red",
+        "type": "type1",
+        "cards": [
+          {
+            "name": "Card 1",
+            "color": "blue",
+            "idNumber": 1,
+            "numberOfPlayers": 2,
+            "title": "Title 1",
+            "text": "Text 1"
+          },
+          {
+            "name": "Card 2",
+            "color": "green",
+            "idNumber": 2,
+            "numberOfPlayers": 3,
+            "title": "Title 2",
+            "text": "Text 2"
+          }
+        ]
+      },
+      {
+        "name": "Pek leken ",
+        "color": "yellow",
+        "type": "type2",
+        "cards": [
+          {
+            "name": "Card 3",
+            "color": "purple",
+            "idNumber": 3,
+            "numberOfPlayers": 4,
+            "title": "Title 3",
+            "text": "Text 3"
+          },
+          {
+            "name": "Card 4",
+            "color": "orange",
+            "idNumber": 4,
+            "numberOfPlayers": 5,
+            "title": "Title 4",
+            "text": "Text 4"
+          }
+        ]
+      }
+    ]
+  }

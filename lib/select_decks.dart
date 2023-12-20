@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spiikify/card_game_swiper.dart';
+import 'package:provider/provider.dart';
+import 'package:spiikify/game_state.dart';
 
 class SelectDeckScreen extends StatefulWidget {
   const SelectDeckScreen({Key? key}) : super(key: key);
@@ -9,14 +11,15 @@ class SelectDeckScreen extends StatefulWidget {
 }
 
 class _SelectDeckScreenState extends State<SelectDeckScreen> {
-  List<String> boxes = [
-    'Jag har aldrig...',
-    'Pek leken',
-    'Box 3',
-    'Box 4',
-    'Box 5'
-  ];
-  List<bool> selectedBoxes = List<bool>.generate(5, (index) => false);
+  late List<String> boxes;
+  late List<bool> selectedBoxes;
+
+  @override
+  void initState() {
+    super.initState();
+    boxes = Provider.of<GameState>(context, listen: false).getDeckNames();
+    selectedBoxes = List<bool>.generate(boxes.length, (index) => false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,7 @@ class _SelectDeckScreenState extends State<SelectDeckScreen> {
                 child: CheckboxListTile(
                   title: Text(
                     boxes[i],
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
@@ -56,68 +59,50 @@ class _SelectDeckScreenState extends State<SelectDeckScreen> {
                 ),
               ),
             ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: ElevatedButton(
               onPressed: () {
-                // Navigate to the next screen
+                // Initialize an empty list of selected decks
+                List<String> selectedDecks = [];
+
+                // Iterate over the selectedBoxes list
+                for (int i = 0; i < selectedBoxes.length; i++) {
+                  // If the box is selected, add the corresponding deck to the selected decks list
+                  if (selectedBoxes[i]) {
+                    selectedDecks.add(boxes[i]);
+                  }
+                }
+
+                // Use the Provider to get the GameState and call setSelectedDecks
+                Provider.of<GameState>(context, listen: false)
+                    .setSelectedDecks(selectedDecks);
+
+                // Navigate to CardSwiperScreen
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) =>
-                          NextScreen(selectedBoxes: selectedBoxes)),
+                    builder: (context) => const CardSwiperScreen(),
+                  ),
                 );
               },
-              child: const Text('Start a Spell'),
               style: ElevatedButton.styleFrom(
-                primary: const Color.fromARGB(255, 231, 231, 231),
-                textStyle: TextStyle(
+                backgroundColor: const Color.fromARGB(255, 231, 231, 231),
+                textStyle: const TextStyle(
                   color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
-                padding: EdgeInsets.symmetric(vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
+              child: const Text('Start a Spell'),
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class NextScreen extends StatelessWidget {
-  final List<bool> selectedBoxes;
-
-  const NextScreen({Key? key, required this.selectedBoxes}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Next Screen'),
-      ),
-      body: ListView.builder(
-        itemCount: selectedBoxes.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text('Box ${index + 1}'),
-            subtitle: Text(selectedBoxes[index] ? 'Selected' : 'Not Selected'),
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const CardSwiperScreen()),
-          );
-        },
-        child: const Icon(Icons.arrow_forward),
       ),
     );
   }
