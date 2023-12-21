@@ -58,21 +58,7 @@ class _AddPlayerScreenState extends State<AddPlayerScreen> {
                       const SizedBox(height: 80),
                       Row(
                         children: [
-                          Expanded(
-                            child: TextField(
-                              controller: _playerNameController,
-                              decoration: InputDecoration(
-                                hintText: 'Lägg till spelare?',
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(40),
-                                  borderSide: BorderSide.none,
-                                ),
-                              ),
-                              style: const TextStyle(color: Colors.black),
-                            ),
-                          ),
+                          _buildTextField(),
                           const SizedBox(width: 10),
                           GestureDetector(
                             onTap: _handleAddPlayer,
@@ -107,81 +93,9 @@ class _AddPlayerScreenState extends State<AddPlayerScreen> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Expanded(
-                        child: Consumer<GameState>(
-                          builder: (context, gameState, child) {
-                            return ListView.builder(
-                              itemCount: gameState.players.length,
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  margin: const EdgeInsets.only(top: 10),
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    color: Colors.yellow,
-                                    border: Border.all(
-                                      color: Colors.black,
-                                      width: 3,
-                                    ),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Image.asset(
-                                        'assets/images/profile_icon.png',
-                                        width: 30,
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Text(
-                                        gameState.players[index],
-                                        style: const TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 20,
-                                        ),
-                                      ),
-                                      const Spacer(),
-                                      GestureDetector(
-                                        onTap: () {
-                                          _handleRemovePlayer(gameState.players[index]);
-                                        },
-                                        child: const Text(
-                                          'X',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 20,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                        ),
-                      ),
+                      _buildPlayerList(),
                       const SizedBox(height: 10),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, 'SelectDeckScreen');
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.red,
-                          padding: const EdgeInsets.all(10),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40),
-                            side:
-                                const BorderSide(width: 3, color: Colors.black),
-                          ),
-                        ),
-                        child: const Text(
-                          'Starta spel',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                      // add some space at the bottom
+                      _buildStarGameButton(context),
                       const SizedBox(height: 20),
                     ],
                   ),
@@ -189,6 +103,102 @@ class _AddPlayerScreenState extends State<AddPlayerScreen> {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Expanded _buildTextField() {
+    return Expanded(
+      child: TextField(
+        controller: _playerNameController,
+        decoration: InputDecoration(
+          hintText: 'Lägg till spelare?',
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(40),
+            borderSide: BorderSide.none,
+          ),
+        ),
+        style: const TextStyle(color: Colors.black),
+      ),
+    );
+  }
+
+  Expanded _buildPlayerList() {
+    return Expanded(
+      child: Consumer<GameState>(
+        builder: (context, gameState, child) {
+          return ListView.builder(
+            itemCount: gameState.players.length,
+            itemBuilder: (context, index) {
+              return Container(
+                margin: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.yellow,
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 3,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'assets/images/profile_icon.png',
+                      width: 30,
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      gameState.players[index],
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                      ),
+                    ),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () {
+                        _handleRemovePlayer(gameState.players[index]);
+                      },
+                      child: const Text(
+                        'X',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+
+  ElevatedButton _buildStarGameButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.pushNamed(context, 'SelectDeckScreen');
+      },
+      style: ElevatedButton.styleFrom(
+        primary: Colors.red,
+        padding: const EdgeInsets.all(10),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(40),
+          side: const BorderSide(width: 3, color: Colors.black),
+        ),
+      ),
+      child: const Text(
+        'Starta spel',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 20,
         ),
       ),
     );

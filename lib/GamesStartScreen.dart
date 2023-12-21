@@ -6,6 +6,23 @@ class CardGameStartScreen extends StatelessWidget {
 
   const CardGameStartScreen({Key? key}) : super(key: key);
 
+  Widget buildGameButton(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        // Navigate to another screen when the image is clicked
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const AddPlayerScreen()),
+        );
+      },
+      child: Image.asset(
+        'assets/images/spel_label.png',
+        width: imageSize, // Use the constant for width
+        height: imageSize, // Use the constant for height
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,48 +44,9 @@ class CardGameStartScreen extends StatelessWidget {
           children: [
             Column(
               children: [
-                InkWell(
-                  onTap: () {
-                    // Navigate to another screen when the image is clicked
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const AddPlayerScreen()),
-                    );
-                  },
-                  child: Image.asset(
-                    'assets/images/spel_label.png',
-                    width: imageSize, // Use the constant for width
-                    height: imageSize, // Use the constant for height
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    // Navigate to AddPlayerScreen when the image is clicked
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const AddPlayerScreen()),
-                    );
-                  },
-                  child: Image.asset(
-                    'assets/images/spel_label.png',
-                    width: imageSize, // Use the constant for width
-                    height: imageSize, // Use the constant for height
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    // Navigate to another screen when the image is clicked
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const AddPlayerScreen()),
-                    );
-                  },
-                  child: Image.asset(
-                    'assets/images/spel_label.png',
-                    width: imageSize, // Use the constant for width
-                    height: imageSize, // Use the constant for height
-                  ),
-                ),
+                buildGameButton(context),
+                buildGameButton(context),
+                buildGameButton(context),
               ],
             ),
           ],
