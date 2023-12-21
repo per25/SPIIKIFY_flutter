@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:async';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -86,23 +87,6 @@ class GameState extends ChangeNotifier {
     cards.shuffle();
   }
 
-  List<GameCard> getCards() {
-    List<GameCard> cardsList = [];
-    for (Deck deck in _selectedDecks) {
-      for (GameCard card in deck.cards) {
-        cardsList.add(GameCard(
-          name: card.name,
-          color: card.color,
-          idNumber: card.idNumber,
-          numberOfPlayers: card.numberOfPlayers,
-          title: card.title,
-          text: card.text,
-        ));
-      }
-    }
-    return cardsList;
-  }
-
   int getCardsLength() {
     int cardsLength = 0;
     for (Deck deck in _selectedDecks) {
@@ -111,6 +95,51 @@ class GameState extends ChangeNotifier {
     return cardsLength;
   }
 
+  List<Widget> getCards() {
+    List<Widget> cardsList = [];
+    for (Deck deck in _selectedDecks) {
+      for (GameCard card in deck.cards) {
+        cardsList.add(buildCard(card));
+      }
+    }
+    return cardsList;
+  }
+
+  Widget buildCard(GameCard card) {
+    return Card(
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Name: ${card.name}',
+              style: TextStyle(fontSize: 24),
+            ),
+            Text(
+              'Color: ${card.color}',
+              style: TextStyle(fontSize: 24),
+            ),
+            Text(
+              'ID Number: ${card.idNumber}',
+              style: TextStyle(fontSize: 24),
+            ),
+            Text(
+              'Number of Players: ${card.numberOfPlayers}',
+              style: TextStyle(fontSize: 24),
+            ),
+            Text(
+              'Title: ${card.title}',
+              style: TextStyle(fontSize: 24),
+            ),
+            Text(
+              'Text: ${card.text}',
+              style: TextStyle(fontSize: 24),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class GameCard {
