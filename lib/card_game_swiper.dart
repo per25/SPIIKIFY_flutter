@@ -11,6 +11,9 @@ class CardSwiperScreen extends StatelessWidget {
     // Use the Provider to get the GameState
     GameState gameState = Provider.of<GameState>(context);
 
+    // Get the cards once and store them in a variable
+    List<Widget> cards = gameState.getCards();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Card Swiper Screen'),
@@ -19,12 +22,11 @@ class CardSwiperScreen extends StatelessWidget {
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Swiper(
-              itemCount: gameState
-                  .getCards()
-                  .length, // Use getCards() method to get the length
-              itemBuilder: (BuildContext context, int index) {
-                return gameState.getCards()[index];
-              }),
+            itemCount: cards.length, // Use the length of cards
+            itemBuilder: (BuildContext context, int index) {
+              return cards[index]; // Use the cards variable here
+            },
+          ),
         ),
       ),
     );

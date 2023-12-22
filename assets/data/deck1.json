@@ -6,7 +6,7 @@
         "type": "type1",
         "cards": [
           {
-            "name": "Card 1",
+            "name": "Blivt tagen av polisen",
             "color": "blue",
             "idNumber": 1,
             "numberOfPlayers": 2,
@@ -14,9 +14,25 @@
             "text": "Text 1"
           },
           {
-            "name": "Card 2",
+            "name": "varit så full jag har spytt",
             "color": "green",
             "idNumber": 2,
+            "numberOfPlayers": 3,
+            "title": "Title 2",
+            "text": "Text 2"
+          },
+          {
+            "name": "tälltat i skogen",
+            "color": "green",
+            "idNumber": 3,
+            "numberOfPlayers": 3,
+            "title": "Title 2",
+            "text": "Text 2"
+          },
+          {
+            "name": "Varit på en festival",
+            "color": "green",
+            "idNumber": 3,
             "numberOfPlayers": 3,
             "title": "Title 2",
             "text": "Text 2"
@@ -29,7 +45,7 @@
         "type": "type2",
         "cards": [
           {
-            "name": "Card 3",
+            "name": "Vem är smartast ",
             "color": "purple",
             "idNumber": 3,
             "numberOfPlayers": 4,
@@ -37,7 +53,38 @@
             "text": "Text 3"
           },
           {
-            "name": "Card 4",
+            "name": "Vem är snyggast ",
+            "color": "orange",
+            "idNumber": 4,
+            "numberOfPlayers": 5,
+            "title": "Title 4",
+            "text": "Text 4"
+          },
+          {
+            "name": "Vem är kommer alltid sent  ",
+            "color": "orange",
+            "idNumber": 4,
+            "numberOfPlayers": 5,
+            "title": "Title 4",
+            "text": "Text 4"
+          }
+        ]
+      },
+      {
+        "name": "Dryck leken",
+        "color": "yellow",
+        "type": "type2",
+        "cards": [
+          {
+            "name": "sist att ställa sig upp drick 3 klunkar ",
+            "color": "purple",
+            "idNumber": 3,
+            "numberOfPlayers": 4,
+            "title": "Title 3",
+            "text": "Text 3"
+          },
+          {
+            "name": "Den som kom sist drick 4 klunkar",
             "color": "orange",
             "idNumber": 4,
             "numberOfPlayers": 5,
